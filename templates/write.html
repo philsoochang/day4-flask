@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="flex-grow pt-stack-lg mt-12 pb-32">
+  <div class="max-w-[720px] mx-auto px-margin-mobile md:px-0">
+    <form method="POST" enctype="multipart/form-data">
+      <div class="flex items-center gap-4 mb-stack-md">
+        {% if post %}
+        <span class="font-label-sm text-label-sm text-on-surface-variant bg-secondary-container px-3 py-1 rounded-full">EDIT</span>
+        <span class="font-label-sm text-label-sm text-outline">글 수정</span>
+        {% else %}
+        <span class="font-label-sm text-label-sm text-on-surface-variant bg-tertiary-fixed px-3 py-1 rounded-full">DRAFT</span>
+        <span class="font-label-sm text-label-sm text-outline">새 글 작성</span>
+        {% endif %}
+      </div>
+
+      <div class="mb-stack-md">
+        <input name="title"
+          class="w-full bg-transparent border-none p-0 focus:ring-0 focus:outline-none font-headline-xl text-headline-xl text-on-surface placeholder:text-surface-dim transition-colors"
+          placeholder="Title of your story..." type="text" required
+          value="{{ post.title if post else '' }}"/>
+      </div>
+
+      <!-- Image upload area -->
+      <div class="w-full aspect-[21/9] bg-surface-container-low border border-outline-variant flex flex-col items-center justify-center mb-stack-lg group hover:bg-surface-container transition-colors cursor-pointer rounded-lg overflow-hidden relative">
+        {% if post and post.image %}
+        <img src="{{ url_for('static', filename='uploads/' + post.image) }}" class="absolute inset-0 w-full h-full object-cover"/>
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <span class="text-white font-label-sm text-label-sm">이미지 변경하기</span>
+        </div>
+        {% else %}
+        <span class="material-symbols-outlined text-outline text-3xl mb-2">add_a_photo</span>
+        <span class="font-label-sm text-label-sm text-outline">Add a cover image</span>
+        {% endif %}
+        <input name="image" type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer"/>
+      </div>
+
+      <div class="relative">
+        <textarea name="content"
+          class="w-full min-h-[530px] bg-transparent border-none p-0 focus:ring-0 focus:outline-none font-body-lg text-body-lg text-on-surface-variant leading-relaxed resize-none placeholder:text-surface-dim"
+          placeholder="Begin your narrative here..." required>{{ post.content if post else '' }}</textarea>
+      </div>
+
+      <div class="fixed bottom-24 right-8 z-50">
+        <button type="submit"
+          class="flex items-center gap-2 bg-primary text-on-primary font-label-sm text-label-sm px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[20px]">send</span>
+          {{ 'SAVE CHANGES' if post else 'PUBLISH STORY' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}

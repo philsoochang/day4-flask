@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="pt-24 pb-32 px-margin-mobile md:px-0 max-w-[720px] mx-auto min-h-screen">
+
+  <header class="mb-stack-lg">
+    <h1 class="font-headline-xl text-on-surface mb-stack-sm">Essays &amp; Observations</h1>
+    <p class="font-body-lg text-on-surface-variant max-w-[540px]">
+      A curated collection of thoughts on intentional living, design philosophy, and the art of the quiet life.
+    </p>
+  </header>
+
+  {% if posts %}
+  <div class="flex flex-col gap-stack-md">
+    {% for post in posts %}
+    <article class="group cursor-pointer">
+      <a href="{{ url_for('post_detail', post_id=post.id) }}" class="block no-underline">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container-highest pb-stack-md group-hover:border-primary-container transition-colors">
+          <div class="flex-1">
+            <span class="font-label-sm text-tertiary uppercase mb-2 block">
+              {{ post.created_at[:10] }}
+            </span>
+            <h2 class="font-headline-md text-on-surface group-hover:text-primary transition-colors">
+              {{ post.title }}
+            </h2>
+            <p class="font-body-md text-on-surface-variant mt-2 line-clamp-2">
+              {{ post.content[:120] }}{% if post.content|length > 120 %}...{% endif %}
+            </p>
+          </div>
+          {% if post.image %}
+          <div class="w-full md:w-32 aspect-[3/2] overflow-hidden rounded-lg bg-surface-container flex-shrink-0">
+            <img src="{{ url_for('static', filename='uploads/' + post.image) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ post.title }}"/>
+          </div>
+          {% endif %}
+        </div>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-stack-lg">
+    <span class="material-symbols-outlined text-outline text-5xl mb-4 block">edit_note</span>
+    <p class="font-body-lg text-on-surface-variant">아직 글이 없습니다.</p>
+    <a href="{{ url_for('write_post') }}" class="inline-block mt-4 bg-primary text-on-primary font-label-sm text-label-sm px-6 py-3 rounded-lg hover:bg-primary-fixed-dim transition-colors">
+      첫 글 쓰기
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- FAB -->
+  <a href="{{ url_for('write_post') }}" class="fixed bottom-24 right-6 md:right-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 z-50">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+  </a>
+</main>
+{% endblock %}

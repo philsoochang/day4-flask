@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-[720px] mx-auto px-margin-mobile md:px-0 py-stack-lg min-h-screen">
+  <article class="flex flex-col gap-stack-md">
+
+    <header class="flex flex-col gap-unit">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-3 py-1 rounded-full">Post</span>
+        <span class="text-on-surface-variant font-label-sm text-label-sm">{{ post.created_at[:10] }}</span>
+      </div>
+      <h1 class="font-headline-xl text-headline-xl text-on-surface">{{ post.title }}</h1>
+    </header>
+
+    {% if post.image %}
+    <div class="aspect-[16/9] w-full overflow-hidden rounded-lg bg-surface-container">
+      <img src="{{ url_for('static', filename='uploads/' + post.image) }}" class="w-full h-full object-cover" alt="{{ post.title }}"/>
+    </div>
+    {% endif %}
+
+    <section class="flex flex-col gap-stack-sm font-body-lg text-body-lg text-on-surface leading-relaxed whitespace-pre-wrap">
+      {{ post.content }}
+    </section>
+
+    <footer class="mt-stack-lg pt-stack-md border-t border-surface-container flex items-center justify-between gap-gutter pb-stack-lg">
+      <a href="{{ url_for('edit_post', post_id=post.id) }}" class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-secondary-container transition-colors shadow-sm active:scale-95 duration-200 no-underline">
+        <span class="material-symbols-outlined text-[18px]">edit</span>
+        Edit
+      </a>
+      <a href="{{ url_for('post_list') }}" class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-2 transition-all group no-underline">
+        <span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+        Back to Library
+      </a>
+    </footer>
+
+  </article>
+</main>
+{% endblock %}

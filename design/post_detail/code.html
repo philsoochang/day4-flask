@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-tertiary-fixed-variant": "#4a463d",
+                  "secondary-fixed-dim": "#d8c3ad",
+                  "surface-container-highest": "#e4e2de",
+                  "surface-container-high": "#eae8e4",
+                  "surface-bright": "#fbf9f5",
+                  "tertiary-container": "#beb8ac",
+                  "surface-container-low": "#f5f3ef",
+                  "outline-variant": "#d0c4bb",
+                  "inverse-primary": "#d6c3b3",
+                  "on-background": "#1b1c1a",
+                  "surface-dim": "#dbdad6",
+                  "surface": "#fbf9f5",
+                  "on-secondary-fixed-variant": "#534434",
+                  "on-primary-fixed-variant": "#514438",
+                  "tertiary": "#625e54",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-tint": "#6a5c4f",
+                  "secondary": "#6c5c4a",
+                  "surface-variant": "#e4e2de",
+                  "on-error": "#ffffff",
+                  "tertiary-fixed-dim": "#ccc6b9",
+                  "inverse-on-surface": "#f2f0ed",
+                  "on-primary-container": "#54473b",
+                  "primary-fixed": "#f3dfce",
+                  "on-tertiary-container": "#4d493f",
+                  "on-primary-fixed": "#231a0f",
+                  "on-primary": "#ffffff",
+                  "background": "#fbf9f5",
+                  "on-secondary-container": "#726250",
+                  "outline": "#7f756d",
+                  "on-secondary-fixed": "#25190c",
+                  "on-surface": "#1b1c1a",
+                  "on-surface-variant": "#4d453e",
+                  "surface-container": "#efeeea",
+                  "error-container": "#ffdad6",
+                  "secondary-container": "#f5dfc8",
+                  "on-error-container": "#93000a",
+                  "tertiary-fixed": "#e9e2d5",
+                  "primary-container": "#c8b6a6",
+                  "inverse-surface": "#30312e",
+                  "primary-fixed-dim": "#d6c3b3",
+                  "on-tertiary-fixed": "#1e1b14",
+                  "primary": "#6a5c4f",
+                  "on-secondary": "#ffffff",
+                  "on-tertiary": "#ffffff",
+                  "error": "#ba1a1a",
+                  "secondary-fixed": "#f5dfc8"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "unit": "8px",
+                  "stack-sm": "16px",
+                  "margin-mobile": "20px",
+                  "container-max": "1120px",
+                  "gutter": "24px",
+                  "stack-md": "32px",
+                  "content-max": "720px",
+                  "stack-lg": "64px"
+          },
+          "fontFamily": {
+                  "headline-xl": ["Newsreader"],
+                  "body-lg": ["Work Sans"],
+                  "label-sm": ["Work Sans"],
+                  "headline-lg": ["Newsreader"],
+                  "headline-md": ["Newsreader"],
+                  "body-md": ["Work Sans"]
+          },
+          "fontSize": {
+                  "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                  "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                  "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                  "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                  "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-stone-50 dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-md mx-auto">
+<div class="flex items-center gap-4">
+<button class="text-stone-800 dark:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors p-2 rounded-full scale-95 active:opacity-80 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<h1 class="font-serif italic tracking-tight text-stone-900 dark:text-stone-50 text-headline-md">The Journal</h1>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a thoughtful woman with soft natural lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8w_-vNIiEviJFw4UVDi5Ab4llMiYsKmRZHWUM-Qi-KLSKIiJlrVLLB8jKLuyOujU-A3O09BKfDZE1KhArPCtEF0RYPBunXRTU7coVR-Zy96iPp1keSobl0DETdvw4FqJkIO-_8NNuEKmhnjQJcAmWmw06TmenGZS8mvuWTQejblpbL34oKp7Mkx9yH5F4rNDD8d-Hlw8r970uFUf9eajapTwaWI-8JCmNb4Uoh2iMTzcO2OGekxsntHCHgYUZP--SzRZ4WW9uOWnY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Reading Progress Bar -->
+<div class="fixed top-[64px] left-0 w-full h-[2px] bg-surface-container z-40">
+<div class="h-full bg-primary w-[35%] transition-all duration-300"></div>
+</div>
+<main class="max-w-[720px] mx-auto px-margin-mobile md:px-0 py-stack-lg min-h-screen">
+<!-- Hero Header -->
+<article class="flex flex-col gap-stack-md">
+<header class="flex flex-col gap-unit">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-3 py-1 rounded-full">Essays</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">8 min read</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">The Architecture of Silence: Finding Stillness in a Digital Age</h1>
+<div class="flex items-center gap-4 py-4 border-b border-surface-container">
+<p class="font-body-md text-body-md text-on-surface-variant italic">Written by Elena Thorne • October 14, 2024</p>
+</div>
+</header>
+<!-- Featured Image -->
+<div class="aspect-[16/9] w-full overflow-hidden rounded-lg bg-surface-container">
+<img class="w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-700" data-alt="minimalist interior with a single wooden chair next to a large window casting soft shadows on a cream wall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5ruGTbXIXIN-W0rheVpH20D4UORNoXsCqOtyTNWavjUKDK1yCAYSRsTI_cYW-u3zlcxVLzthqSsBjRciwkhcOByE5G46dMgxvI7qKuOsYH4lfi9jAhz_QQuvJvXKT3FQroL5ITXQKvSWrnAZiPW3UjiS7nOZ9Y9-Y6m_09KMYRTqlFiTY042cs97Lvm17ojIpIYhBI3ydD6-oTOFzkSIv7kDrds6OB5o2_3GU88ihgXFJNQVHe3OVkis3RFFpmrVbBUN7_R8wIJow"/>
+</div>
+<!-- Article Content -->
+<section class="flex flex-col gap-stack-sm font-body-lg text-body-lg text-on-surface leading-relaxed">
+<p class="first-letter:text-5xl first-letter:font-headline-xl first-letter:float-left first-letter:mr-3 first-letter:text-primary">In the relentless hum of the twenty-first century, silence has become more than just a lack of sound—it is a luxury, a deliberate architectural choice for the mind. We are curated by notifications, tethered to the infinite scroll of external validation, and rarely find the space where our own thoughts can echo.</p>
+<p>To cultivate silence is to build a cathedral within. It requires the intentional laying of stones: the removal of digital clutter, the setting of boundaries with our devices, and the appreciation of the "paper-on-paper" depth of real life. When we step away from the glare of the screen, the world regains its texture.</p>
+<blockquote class="my-8 pl-6 border-l-2 border-primary italic font-headline-md text-headline-md text-secondary">
+          "Quiet luxury isn't about what we own, but the quality of the attention we are able to pay to our own existence."
+        </blockquote>
+<p>This pursuit of stillness isn't a retreat into passivity. Rather, it is the foundation of focused action. By narrowing our field of vision, we deepen our capacity for wonder. A single cup of tea, the grain of a wooden table, or the slow transition of light across a room become events in themselves.</p>
+<p>We must learn to treat our attention as a finite and sacred resource. In a world that profits from our distraction, being bored is a radical act of rebellion. It is in the fertile soil of boredom that the most resilient ideas take root.</p>
+</section>
+<!-- Action Buttons Cluster -->
+<footer class="mt-stack-lg pt-stack-md border-t border-surface-container flex flex-col md:flex-row items-center justify-between gap-gutter pb-stack-lg">
+<div class="flex items-center gap-4 order-2 md:order-1">
+<button class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-secondary-container transition-colors shadow-sm active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+            Edit
+          </button>
+<button class="bg-surface-container-lowest text-error border border-error-container font-label-sm text-label-sm px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-error-container transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+            Delete
+          </button>
+</div>
+<button class="order-1 md:order-2 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-2 transition-all group">
+<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform" data-icon="arrow_back">arrow_back</span>
+          Back to Library
+        </button>
+</footer>
+</article>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-stone-50/90 dark:bg-stone-900/90 backdrop-blur-md border-t border-stone-200 dark:border-stone-800 flex justify-around items-center px-4 py-3 pb-safe">
+<a class="flex flex-col items-center justify-center text-stone-900 dark:text-stone-50 bg-stone-200/50 dark:bg-stone-800/50 rounded-lg px-4 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-sans text-[11px] uppercase tracking-widest mt-1">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-sans text-[11px] uppercase tracking-widest mt-1">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-sans text-[11px] uppercase tracking-widest mt-1">Settings</span>
+</a>
+</nav>
+<!-- Spacer for fixed bottom nav -->
+<div class="h-20"></div>
+</body></html>

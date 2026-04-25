@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#4a463d",
+            "secondary-fixed-dim": "#d8c3ad",
+            "surface-container-highest": "#e4e2de",
+            "surface-container-high": "#eae8e4",
+            "surface-bright": "#fbf9f5",
+            "tertiary-container": "#beb8ac",
+            "surface-container-low": "#f5f3ef",
+            "outline-variant": "#d0c4bb",
+            "inverse-primary": "#d6c3b3",
+            "on-background": "#1b1c1a",
+            "surface-dim": "#dbdad6",
+            "surface": "#fbf9f5",
+            "on-secondary-fixed-variant": "#534434",
+            "on-primary-fixed-variant": "#514438",
+            "tertiary": "#625e54",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#6a5c4f",
+            "secondary": "#6c5c4a",
+            "surface-variant": "#e4e2de",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#ccc6b9",
+            "inverse-on-surface": "#f2f0ed",
+            "on-primary-container": "#54473b",
+            "primary-fixed": "#f3dfce",
+            "on-tertiary-container": "#4d493f",
+            "on-primary-fixed": "#231a0f",
+            "on-primary": "#ffffff",
+            "background": "#fbf9f5",
+            "on-secondary-container": "#726250",
+            "outline": "#7f756d",
+            "on-secondary-fixed": "#25190c",
+            "on-surface": "#1b1c1a",
+            "on-surface-variant": "#4d453e",
+            "surface-container": "#efeeea",
+            "error-container": "#ffdad6",
+            "secondary-container": "#f5dfc8",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#e9e2d5",
+            "primary-container": "#c8b6a6",
+            "inverse-surface": "#30312e",
+            "primary-fixed-dim": "#d6c3b3",
+            "on-tertiary-fixed": "#1e1b14",
+            "primary": "#6a5c4f",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#f5dfc8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "unit": "8px",
+            "stack-sm": "16px",
+            "margin-mobile": "20px",
+            "container-max": "1120px",
+            "gutter": "24px",
+            "stack-md": "32px",
+            "content-max": "720px",
+            "stack-lg": "64px"
+          },
+          "fontFamily": {
+            "headline-xl": ["Newsreader"],
+            "body-lg": ["Work Sans"],
+            "label-sm": ["Work Sans"],
+            "headline-lg": ["Newsreader"],
+            "headline-md": ["Newsreader"],
+            "body-md": ["Work Sans"]
+          },
+          "fontSize": {
+            "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #fbf9f5;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar Section -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50 border-b border-stone-200">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-md mx-auto">
+<div class="flex items-center gap-4">
+<button class="text-stone-800 hover:bg-stone-100 transition-colors scale-95 active:opacity-80 duration-200 p-1">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-serif italic tracking-tight text-stone-900 text-xl">The Journal</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of a thoughtful man in soft natural lighting with a blurred warm interior background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6ZzKk4Wqrdgkv79z9SNGVOWettnnCQavpTiGbMymxTKwy11OUCWbc8Z1saBJNpi0iRWjjT7uPakqLxtxBSGYCD6EFC2PmhUXy6i38aBTSceLLUWUrSvjBKBOLEjxZkh3k6lCzxLXbZcLi6LXa0oMmP5ulDS0AYiRS17V_3gvzOpngIjpo5D6edsW1ioosrgko9zpXiq2MjMn7bEYnGhEL7k7Okk2wnZw05qUCtYvyicDH-oFp7rvnrBbqmHmZrUqLiNW0Es7aG8uC"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Reading Progress Bar -->
+<div class="fixed top-[65px] left-0 w-full h-[2px] z-40 bg-surface-container">
+<div class="h-full bg-primary w-1/3"></div>
+</div>
+<!-- Main Canvas -->
+<main class="pt-24 pb-32 px-margin-mobile md:px-0 max-w-[720px] mx-auto min-h-screen">
+<!-- Hero Section / Header -->
+<header class="mb-stack-lg">
+<h1 class="font-headline-xl text-on-surface mb-stack-sm">Essays &amp; Observations</h1>
+<p class="font-body-lg text-on-surface-variant max-w-[540px]">
+        A curated collection of thoughts on intentional living, design philosophy, and the art of the quiet life.
+      </p>
+</header>
+<!-- Post List -->
+<div class="flex flex-col gap-stack-md">
+<!-- Article Card 1 -->
+<article class="group cursor-pointer">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container-highest pb-stack-md group-hover:border-primary-container transition-colors">
+<div class="flex-1">
+<span class="font-label-sm text-tertiary uppercase mb-2 block">Living</span>
+<h2 class="font-headline-md text-on-surface group-hover:text-primary transition-colors">The Architecture of Silence</h2>
+<time class="font-label-sm text-outline block mt-2">October 24, 2023 • 6 min read</time>
+</div>
+<div class="w-full md:w-32 aspect-[3/2] overflow-hidden rounded-lg bg-surface-container">
+<img alt="Minimalist interior" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="serene minimalist room with a single designer chair, thin sunlight casting long shadows on warm beige walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQYIoilnR_qNbcz3p0oWeYJJYiAsyXMAdOX1k_rJJjwMVOkXeys3ksVOdf-5TA9vF66Xt5AUpI4F1mFCd2G2KgyQ3MZ4lWhlrOUXnR_F_yur7GKxW2Z8ge9G5dWAtk4Al2fu_eoHNhzbvioRPZitMBCK2OKzGGN2UVi8rw1QsnvJPDaE3_8YfARxIluupXLtzR5mqeCQpsHPMdqJWXsjYFYJR8HKzgnz9h6Cf8N4-Y0UJ5yofzMmKNmpKwVDyXlNEMN2Bdj72Et-Cd"/>
+</div>
+</div>
+</article>
+<!-- Article Card 2 -->
+<article class="group cursor-pointer">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container-highest pb-stack-md group-hover:border-primary-container transition-colors">
+<div class="flex-1">
+<span class="font-label-sm text-tertiary uppercase mb-2 block">Philosophy</span>
+<h2 class="font-headline-md text-on-surface group-hover:text-primary transition-colors">Finding Permanence in a Digital Age</h2>
+<time class="font-label-sm text-outline block mt-2">October 18, 2023 • 12 min read</time>
+</div>
+<div class="w-full md:w-32 aspect-[3/2] overflow-hidden rounded-lg bg-surface-container">
+<img alt="Tactile stationery" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close-up of high-quality fountain pen resting on textured heavy-weight cream paper with soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn24XnZq21qePTWoVaC0M8876mps7kfOOFRU9D9iX2v7fKeE4EO_b2J_ruep4Yx7kPyK9m5BKR_9EopFJ62k8iEpF4PlVCQpMbLXYoe9o93eb8bwL9pdLO4Y8twgwg-wv7ld-GMkSPVrk8sJqKqXXO7yQXvVuUZ2JYMFgNhOGCc2ftesx2c9Pf-J0oeWu5DdYRoAGccEvM6aSt_u7HfZEWCskLISo3qPxJA0GmkBKp_DYze2VQ4y8x4gBWdFl5pNnjOliyZaupYJQq"/>
+</div>
+</div>
+</article>
+<!-- Article Card 3 -->
+<article class="group cursor-pointer">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container-highest pb-stack-md group-hover:border-primary-container transition-colors">
+<div class="flex-1">
+<span class="font-label-sm text-tertiary uppercase mb-2 block">Design</span>
+<h2 class="font-headline-md text-on-surface group-hover:text-primary transition-colors">Materials That Age with Grace</h2>
+<time class="font-label-sm text-outline block mt-2">October 12, 2023 • 4 min read</time>
+</div>
+<div class="w-full md:w-32 aspect-[3/2] overflow-hidden rounded-lg bg-surface-container">
+<img alt="Wood textures" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="abstract close-up of aged oak wood grain with beautiful knots and warm golden brown tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARhBQNl4VjQQkAtP8wHOyIb08qckL6QbThsxK717cUs54EYEZClAyL9QCgpvubBOGo4tDxY8zFkobk16Am4VYSCBQ5tMNo9vvi1ZNFMjqLAyFNovBctpb3-WQjldOpHdNl4UiBDE5BVzfLXhmt6CSyJCBfn7eoOZAd3-bHTqCWIY8H57HeA9MrcV4VQNDtC2WLuFq5w7pQu6nJSnqrupBAC1icfG5Z3yi9Kcg_B1mnWtu0cKjsHoeVhFaeP93CIFZTAOnt-wM74Hlg"/>
+</div>
+</div>
+</article>
+<!-- Article Card 4 -->
+<article class="group cursor-pointer">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container-highest pb-stack-md group-hover:border-primary-container transition-colors">
+<div class="flex-1">
+<span class="font-label-sm text-tertiary uppercase mb-2 block">Living</span>
+<h2 class="font-headline-md text-on-surface group-hover:text-primary transition-colors">Morning Rituals: A Study of Steam and Light</h2>
+<time class="font-label-sm text-outline block mt-2">September 29, 2023 • 8 min read</time>
+</div>
+<div class="w-full md:w-32 aspect-[3/2] overflow-hidden rounded-lg bg-surface-container">
+<img alt="Coffee ritual" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="hand pouring water into a ceramic coffee dripper, steam rising in a sunlit kitchen with warm shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzXVRUKYbOqmsHZIKE4RCG9UHreQlDIxv7Iltuw6hb8NR0nFlKmMivJPP-K1yxRkFeUVpJZ74Yli0NFdBYIHsl5xLC0ih2iZtteC-vko7gVZM_ksYuKKdNfgBjJPnxEKGdMUyRK5CCm9nRnjPM79Z-SvLLeyTA2F5ST8okCRF0stdmNB02TokI1JP7TFZaHj-wZ-OW_zRvYAVsqfstovNKtuP8lVGb-_ARg89bROObdwoNv5Z1NpKNgI4FLuuxtfatGJjPGxDeDz4z"/>
+</div>
+</div>
+</article>
+</div>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-6 md:right-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 z-50">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</main>
+<!-- BottomNavBar Section -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-stone-50/90 backdrop-blur-md border-t border-stone-200">
+<div class="flex justify-around items-center px-4 py-3 pb-safe max-w-screen-md mx-auto">
+<!-- Library Tab (Active) -->
+<a class="flex flex-col items-center justify-center text-stone-900 bg-stone-200/50 rounded-lg px-4 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-sans text-[11px] uppercase tracking-widest mt-1">Library</span>
+</a>
+<!-- Create Tab -->
+<a class="flex flex-col items-center justify-center text-stone-400 hover:text-stone-600 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-sans text-[11px] uppercase tracking-widest mt-1">Create</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex flex-col items-center justify-center text-stone-400 hover:text-stone-600 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-sans text-[11px] uppercase tracking-widest mt-1">Settings</span>
+</a>
+</div>
+</nav>
+</body></html>
