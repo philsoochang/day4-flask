@@ -36,24 +36,10 @@ def allowed_file(filename):
 
 
 def get_db():
-    db = sqlite3.connect("board.db")
+    db_path = os.environ.get("DB_PATH", "board.db")
+    db = sqlite3.connect(db_path)
     db.row_factory = sqlite3.Row
     return db
-
-
-def init_db():
-    db = get_db()
-    db.execute("""
-        CREATE TABLE IF NOT EXISTS posts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            content TEXT NOT NULL,
-            image TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    db.commit()
-    db.close()
 
 
 def save_image(file):
@@ -146,5 +132,6 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
+    from init_db import init_db
     init_db()
     app.run(debug=True)
