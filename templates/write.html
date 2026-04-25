@@ -21,7 +21,7 @@
           value="{{ post.title if post else '' }}"/>
       </div>
 
-      <!-- Image upload area -->
+      <!-- Cover image upload area -->
       <div class="w-full aspect-[21/9] bg-surface-container-low border border-outline-variant flex flex-col items-center justify-center mb-stack-lg group hover:bg-surface-container transition-colors cursor-pointer rounded-lg overflow-hidden relative">
         {% if post and post.image %}
         <img src="{{ url_for('static', filename='uploads/' + post.image) }}" class="absolute inset-0 w-full h-full object-cover"/>
@@ -36,9 +36,18 @@
       </div>
 
       <div class="relative">
-        <textarea name="content"
+        <textarea id="content" name="content"
           class="w-full min-h-[530px] bg-transparent border-none p-0 focus:ring-0 focus:outline-none font-body-lg text-body-lg text-on-surface-variant leading-relaxed resize-none placeholder:text-surface-dim"
           placeholder="Begin your narrative here..." required>{{ post.content if post else '' }}</textarea>
+      </div>
+
+      <!-- Floating toolbar -->
+      <div class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-stone-50 border border-stone-200 shadow-sm px-4 py-2 rounded-full flex items-center gap-2 z-40 backdrop-blur-md">
+        <button type="button" onclick="document.getElementById('inline-img-input').click()"
+          class="p-2 text-stone-500 hover:text-stone-900 transition-colors">
+          <span class="material-symbols-outlined">image</span>
+        </button>
+        <input id="inline-img-input" type="file" accept="image/*" class="hidden" onchange="uploadInlineImage(this)"/>
       </div>
 
       <div class="fixed bottom-24 right-8 z-50">
@@ -51,4 +60,29 @@
     </form>
   </div>
 </main>
+
+<script>
+function uploadInlineImage(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const formData = new FormData();
+  formData.append("image", file);
+
+  fetch("/upload-image", { method: "POST", body: formData })
+    .then(r => r.json())
+    .then(data => {
+      if (data.url) {
+        const ta = document.getElementById("content");
+        const markdown = `![](${data.url})`;
+        const before = ta.value.substring(0, ta.selectionStart);
+        const after = ta.value.substring(ta.selectionEnd);
+        ta.value = before + "\n" + markdown + "\n" + after;
+        ta.focus();
+        ta.selectionStart = ta.selectionEnd = before.length + markdown.length + 2;
+      }
+    })
+    .catch(() => alert("이미지 업로드 실패"));
+  input.value = "";
+}
+</script>
 {% endblock %}

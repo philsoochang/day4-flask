@@ -19,17 +19,25 @@
     {% endif %}
 
     <section class="flex flex-col gap-stack-sm font-body-lg text-body-lg text-on-surface leading-relaxed whitespace-pre-wrap">
-      {{ post.content }}
+      {{ post.content | render_content }}
     </section>
 
-    <footer class="mt-stack-lg pt-stack-md border-t border-surface-container flex items-center justify-between gap-gutter pb-stack-lg">
-      <a href="{{ url_for('edit_post', post_id=post.id) }}" class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-secondary-container transition-colors shadow-sm active:scale-95 duration-200 no-underline">
-        <span class="material-symbols-outlined text-[18px]">edit</span>
-        Edit
-      </a>
-      <a href="{{ url_for('post_list') }}" class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-2 transition-all group no-underline">
+    <footer class="mt-stack-lg pt-stack-md border-t border-surface-container flex flex-col md:flex-row items-center justify-between gap-gutter pb-stack-lg">
+      <div class="flex items-center gap-4 order-2 md:order-1">
+        <a href="{{ url_for('edit_post', post_id=post.id) }}" class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-secondary-container transition-colors shadow-sm active:scale-95 duration-200 no-underline">
+          <span class="material-symbols-outlined text-[18px]">edit</span>
+          수정
+        </a>
+        <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}" onsubmit="return confirm('정말 삭제할까요?');">
+          <button type="submit" class="bg-surface-container-lowest text-error border border-error-container font-label-sm text-label-sm px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-error-container transition-colors active:scale-95 duration-200">
+            <span class="material-symbols-outlined text-[18px]">delete</span>
+            삭제
+          </button>
+        </form>
+      </div>
+      <a href="{{ url_for('post_list') }}" class="order-1 md:order-2 text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-2 transition-all group no-underline">
         <span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
-        Back to Library
+        목록으로
       </a>
     </footer>
 

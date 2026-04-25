@@ -24,7 +24,7 @@
               {{ post.title }}
             </h2>
             <p class="font-body-md text-on-surface-variant mt-2 line-clamp-2">
-              {{ post.content[:120] }}{% if post.content|length > 120 %}...{% endif %}
+              {{ (post.content | strip_images)[:120] }}{% if (post.content | strip_images | length) > 120 %}...{% endif %}
             </p>
           </div>
           {% if post.image %}
