@@ -15,6 +15,8 @@ ALLOWED_EXTENSIONS = {
 
 @app.template_filter("render_content")
 def render_content(text):
+    if not text:
+        return ""
     def img_repl(m):
         alt = m.group(1) or ""
         url = m.group(2)
@@ -22,13 +24,15 @@ def render_content(text):
             f'<img src="{url}" alt="{alt}" '
             f'class="w-full rounded-lg my-stack-md" loading="lazy"/>'
         )
-    html = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", img_repl, text)
+    html = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", img_repl, str(text))
     return Markup(html)
 
 
 @app.template_filter("strip_images")
 def strip_images(text):
-    return re.sub(r"!\[[^\]]*\]\([^)]+\)", "", text)
+    if not text:
+        return ""
+    return re.sub(r"!\[[^\]]*\]\([^)]+\)", "", str(text))
 
 
 def allowed_file(filename):
@@ -131,7 +135,10 @@ def delete_post(post_id):
     return redirect(url_for("post_list"))
 
 
-if __name__ == "__main__":
+with app.app_context():
     from init_db import init_db
     init_db()
+
+
+if __name__ == "__main__":
     app.run(debug=True)
