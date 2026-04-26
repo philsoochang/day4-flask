@@ -8,42 +8,98 @@
     <p class="font-body-lg text-on-surface-variant max-w-[540px]">
       A curated collection of thoughts on intentional living, design philosophy, and the art of the quiet life.
     </p>
+    <form method="get" action="{{ url_for('post_list') }}" class="mt-4 flex flex-col md:flex-row md:items-center gap-2">
+      <div class="flex items-center gap-2 w-full">
+        <input id="search-input" name="q" type="text" value="{{ query or '' }}" placeholder="검색어를 입력하세요" class="flex-1 px-3 py-2 rounded-lg border border-outline-variant bg-surface text-on-surface"/>
+        <button id="search-button" type="submit" class="px-4 py-2 rounded-lg border border-outline-variant bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors">
+          🔍 검색
+        </button>
+      </div>
+      <select id="sort-select" name="sort" onchange="this.form.submit()" class="px-3 py-2 rounded-lg border border-outline-variant bg-surface text-on-surface md:w-56">
+        <option value="latest" {% if sort == 'latest' %}selected{% endif %}>최신순</option>
+        <option value="oldest" {% if sort == 'oldest' %}selected{% endif %}>오래된순</option>
+        <option value="title_asc" {% if sort == 'title_asc' %}selected{% endif %}>제목순 (가나다)</option>
+      </select>
+    </form>
   </header>
 
   {% if posts %}
-  <div class="flex flex-col gap-stack-md">
-    {% for post in posts %}
-    <article class="group cursor-pointer">
-      <a href="{{ url_for('post_detail', post_id=post.id) }}" class="block no-underline">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-container-highest pb-stack-md group-hover:border-primary-container transition-colors">
-          <div class="flex-1">
-            <span class="font-label-sm text-tertiary uppercase mb-2 block">
-              {{ post.created_at[:10] }}
-            </span>
-            <h2 class="font-headline-md text-on-surface group-hover:text-primary transition-colors">
-              {{ post.title }}
-            </h2>
-            <p class="font-body-md text-on-surface-variant mt-2 line-clamp-2">
-              {{ (post.content | strip_images)[:120] }}{% if (post.content | strip_images | length) > 120 %}...{% endif %}
-            </p>
-          </div>
-          {% if post.image %}
-          <div class="w-full md:w-32 aspect-[3/2] overflow-hidden rounded-lg bg-surface-container flex-shrink-0">
-            <img src="{{ url_for('static', filename='uploads/' + post.image) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ post.title }}"/>
-          </div>
-          {% endif %}
-        </div>
+  <div class="border border-surface-container-highest rounded-lg overflow-hidden">
+    <div class="hidden md:grid grid-cols-[140px_1fr_2fr] gap-4 px-4 py-3 bg-surface-container-low text-on-surface-variant font-label-sm uppercase tracking-wide">
+      <span id="list-header-date">날짜</span>
+      <span id="list-header-title">제목</span>
+      <span id="list-header-content">내용</span>
+    </div>
+
+    <div class="divide-y divide-surface-container-highest">
+      {% for post in posts %}
+      <a href="{{ url_for('post_detail', post_id=post.id) }}" class="block no-underline hover:bg-surface-container-low transition-colors">
+        <article class="grid grid-cols-1 md:grid-cols-[140px_1fr_2fr] gap-2 md:gap-4 px-4 py-3">
+          <span class="font-label-sm text-tertiary uppercase">{{ post.created_at[:10] }}</span>
+          <h2 class="font-body-md text-on-surface truncate">{{ post.title }}</h2>
+          <p class="font-body-md text-on-surface-variant truncate">
+            {{ (post.content | strip_images)[:120] }}{% if (post.content | strip_images | length) > 120 %}...{% endif %}
+          </p>
+        </article>
       </a>
-    </article>
-    {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="mt-stack-md flex items-center justify-center gap-2 md:gap-3">
+    {% if page > 1 %}
+    <a id="first-page" aria-disabled="false" href="{{ url_for('post_list', page=1, q=query, sort=sort) }}" class="px-3 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
+      처음
+    </a>
+    {% else %}
+    <span id="first-page" aria-disabled="true" class="px-3 py-2 rounded-lg border border-outline-variant text-outline cursor-not-allowed">
+      처음
+    </span>
+    {% endif %}
+
+    {% if has_prev %}
+    <a id="prev-page" aria-disabled="false" href="{{ url_for('post_list', page=page-1, q=query, sort=sort) }}" class="px-3 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
+      이전
+    </a>
+    {% else %}
+    <span id="prev-page" aria-disabled="true" class="px-3 py-2 rounded-lg border border-outline-variant text-outline cursor-not-allowed">
+      이전
+    </span>
+    {% endif %}
+
+    <span class="font-label-sm text-on-surface-variant">{{ page }} / {{ total_pages }}</span>
+
+    {% if has_next %}
+    <a id="next-page" aria-disabled="false" href="{{ url_for('post_list', page=page+1, q=query, sort=sort) }}" class="px-3 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
+      다음
+    </a>
+    {% else %}
+    <span id="next-page" aria-disabled="true" class="px-3 py-2 rounded-lg border border-outline-variant text-outline cursor-not-allowed">
+      다음
+    </span>
+    {% endif %}
+
+    {% if page < total_pages %}
+    <a id="last-page" aria-disabled="false" href="{{ url_for('post_list', page=total_pages, q=query, sort=sort) }}" class="px-3 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
+      마지막
+    </a>
+    {% else %}
+    <span id="last-page" aria-disabled="true" class="px-3 py-2 rounded-lg border border-outline-variant text-outline cursor-not-allowed">
+      마지막
+    </span>
+    {% endif %}
   </div>
   {% else %}
   <div class="text-center py-stack-lg">
     <span class="material-symbols-outlined text-outline text-5xl mb-4 block">edit_note</span>
+    {% if is_search %}
+    <p class="font-body-lg text-on-surface-variant">검색 결과가 없습니다</p>
+    {% else %}
     <p class="font-body-lg text-on-surface-variant">아직 글이 없습니다.</p>
     <a href="{{ url_for('write_post') }}" class="inline-block mt-4 bg-primary text-on-primary font-label-sm text-label-sm px-6 py-3 rounded-lg hover:bg-primary-fixed-dim transition-colors">
       첫 글 쓰기
     </a>
+    {% endif %}
   </div>
   {% endif %}
 

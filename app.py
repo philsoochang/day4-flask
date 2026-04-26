@@ -68,12 +68,61 @@ def upload_image():
 
 @app.route("/")
 def post_list():
+    per_page = 10
+    query = request.args.get("q", "").strip()
+    sort = request.args.get("sort", "latest").strip()
+    sort_map = {
+        "latest": "created_at DESC",
+        "oldest": "created_at ASC",
+        "title_asc": "title COLLATE NOCASE ASC",
+    }
+    sort = sort if sort in sort_map else "latest"
+    order_by = sort_map[sort]
+
+    try:
+        page = int(request.args.get("page", 1))
+    except (TypeError, ValueError):
+        page = 1
+    page = max(page, 1)
+
     db = get_db()
-    posts = db.execute(
-        "SELECT id, title, content, image, created_at FROM posts ORDER BY created_at DESC"
-    ).fetchall()
+    if query:
+        keyword = f"%{query}%"
+        total_posts = db.execute(
+            "SELECT COUNT(*) FROM posts WHERE title LIKE ? OR content LIKE ?",
+            (keyword, keyword),
+        ).fetchone()[0]
+    else:
+        total_posts = db.execute("SELECT COUNT(*) FROM posts").fetchone()[0]
+
+    total_pages = max(1, (total_posts + per_page - 1) // per_page)
+    page = min(page, total_pages)
+    offset = (page - 1) * per_page
+
+    if query:
+        posts = db.execute(
+            f"SELECT id, title, content, image, created_at FROM posts WHERE title LIKE ? OR content LIKE ? ORDER BY {order_by} LIMIT ? OFFSET ?",
+            (keyword, keyword, per_page, offset),
+        ).fetchall()
+    else:
+        posts = db.execute(
+            f"SELECT id, title, content, image, created_at FROM posts ORDER BY {order_by} LIMIT ? OFFSET ?",
+            (per_page, offset),
+        ).fetchall()
     db.close()
-    return render_template("list.html", posts=posts)
+
+    return render_template(
+        "list.html",
+        posts=posts,
+        page=page,
+        total_pages=total_pages,
+        has_prev=page > 1,
+        has_next=page < total_pages,
+        query=query,
+        sort=sort,
+        is_search=bool(query),
+        total_posts=total_posts,
+    )
 
 
 @app.route("/write", methods=["GET", "POST"])
