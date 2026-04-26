@@ -4,8 +4,12 @@ services:
     runtime: python
     buildCommand: bash build.sh
     startCommand: gunicorn app:app
+    disk:
+      name: board-data
+      mountPath: /var/data
+      sizeGB: 1
     envVars:
       - key: PYTHON_VERSION
         value: "3.10.12"
       - key: DB_PATH
-        value: /opt/render/project/src/board.db
+        value: /var/data/board.db
