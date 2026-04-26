@@ -3,7 +3,7 @@ services:
     name: day4-flask
     runtime: python
     buildCommand: bash build.sh
-    startCommand: gunicorn app:app
+    startCommand: python seed.py && gunicorn app:app
     disk:
       name: board-data
       mountPath: /var/data
