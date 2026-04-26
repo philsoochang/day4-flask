@@ -57,6 +57,19 @@ class SeedSyncTests(unittest.TestCase):
 
         self.assertEqual(count, 2)
 
+    def test_init_db_uses_default_seed_path_when_env_missing(self):
+        os.environ.pop("POSTS_SEED_PATH", None)
+        default_seed_path = os.path.join(os.getcwd(), "seed", "local_posts_seed.json")
+        with open(default_seed_path, "r", encoding="utf-8") as f:
+            local_seed = json.load(f)
+
+        init_db()
+        conn = sqlite3.connect(self.db_path)
+        count = conn.execute("SELECT COUNT(*) FROM posts").fetchone()[0]
+        conn.close()
+
+        self.assertEqual(count, len(local_seed))
+
 
 if __name__ == "__main__":
     unittest.main()

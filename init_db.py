@@ -4,8 +4,9 @@ import sqlite3
 
 
 def seed_posts_if_empty(db):
-    seed_path = os.environ.get("POSTS_SEED_PATH", "")
-    if not seed_path or not os.path.exists(seed_path):
+    default_seed_path = os.path.join(os.path.dirname(__file__), "seed", "local_posts_seed.json")
+    seed_path = os.environ.get("POSTS_SEED_PATH", default_seed_path)
+    if not os.path.exists(seed_path):
         return
 
     existing_count = db.execute("SELECT COUNT(*) FROM posts").fetchone()[0]
