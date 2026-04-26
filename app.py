@@ -188,6 +188,11 @@ with app.app_context():
     from init_db import init_db
     init_db()
 
+    seed_on_startup = os.environ.get("NEWS_SEED_ON_STARTUP", "1")
+    if seed_on_startup != "0":
+        from seed import seed_news_posts_safe
+        seed_news_posts_safe(limit=10)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
