@@ -13,3 +13,5 @@ services:
         value: "3.10.12"
       - key: DB_PATH
         value: /var/data/board.db
+      - key: POSTS_SEED_PATH
+        value: /opt/render/project/src/seed/local_posts_seed.json
